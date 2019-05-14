@@ -1,0 +1,42 @@
+#定义用户默认的链接环境
+spring:
+  profiles:
+    active: dev
+---   #定义环境分割线
+server:
+  port: 8091  #定义项目端口
+  servlet:
+    context-path: /jt
+#yml语法 1.配置时注意缩进   2. :号之后必须跟空格 
+user:
+  id: 100
+  username: 元宵节快乐
+  age: 19
+
+#定义环境的名称
+spring:
+  profiles: prod
+  
+---       #环境的分割线
+server:
+  port: 8095  #定义项目端口
+  servlet:
+    context-path: /
+#yml语法 1.配置时注意缩进   2. :号之后必须跟空格 
+user:
+  id: 1000
+  username: 元宵节快乐
+  age: 1900
+
+#定义环境的名称
+spring:
+  profiles: dev
+
+
+
+
+
+
+
+
+

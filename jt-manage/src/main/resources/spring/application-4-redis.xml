@@ -1,0 +1,94 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	
+	
+	<!--1.spring整合单台redis  -->
+	<!-- <bean id="jedis" class="redis.clients.jedis.Jedis">
+		<constructor-arg name="host" value="${redis.host}"/>
+		<constructor-arg name="port" value="${redis.port}"/>
+	</bean> -->
+	
+	
+		<!-- List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
+		shards.add(new JedisShardInfo(host,6379));
+		shards.add(new JedisShardInfo(host,6380));
+		shards.add(new JedisShardInfo(host,6381));
+		ShardedJedis shardedJedis = 
+				new ShardedJedis(shards);
+		shardedJedis.set("shards","完成分片操作");
+		System.out.println
+		("获取数据:"+shardedJedis.get("shards")); -->
+	
+	<!--2.spring整合redis分片  -->
+	<!-- <bean id="shard1" class="redis.clients.jedis.JedisShardInfo">
+		<constructor-arg name="host" value="${redis.host}"/>
+		<constructor-arg name="port" value="${redis.port1}"/>
+	</bean>
+	
+	<bean id="shard2" class="redis.clients.jedis.JedisShardInfo">
+		<constructor-arg name="host" value="${redis.host}"/>
+		<constructor-arg name="port" value="${redis.port2}"/>
+	</bean>
+	
+	<bean id="shard3" class="redis.clients.jedis.JedisShardInfo">
+		<constructor-arg name="host" value="${redis.host}"/>
+		<constructor-arg name="port" value="${redis.port3}"/>
+	</bean>
+	
+	<bean id="shardedJedis" class="redis.clients.jedis.ShardedJedis">
+		<constructor-arg name="shards">
+			<list>
+				<ref bean="shard1"/>
+				<ref bean="shard2"/>
+				<ref bean="shard3"/>
+			</list>
+		</constructor-arg>
+	</bean> -->
+	
+	
+	<!-- Set<String> sentinels = new HashSet<>();
+		//sentinels.add(new HostAndPort(host, port).toString());
+		sentinels.add("192.168.126.174:26379");
+		JedisSentinelPool pool = 
+		new JedisSentinelPool("mymaster", sentinels);
+		//获取redis链接
+		Jedis jedis = pool.getResource();
+		jedis.set("aa", "redis哨兵配置");
+		System.out.println(jedis.get("aa"));
+		jedis.close(); //将链接关闭 -->
+	
+	<!--配置redis哨兵  -->
+	<!-- <bean id="jedisSentinelPool" class="redis.clients.jedis.JedisSentinelPool">
+		<constructor-arg name="masterName" 
+				value="${redis.masterName}"/>
+		<constructor-arg name="sentinels">
+			<set>
+				<value>${redis.sentinel}</value>
+			</set>
+		</constructor-arg>
+	</bean> -->
+	
+	<!--定义对象与JSON转化工具类  -->
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+	
+	<!--引入spring工厂,创建jedisCluster对象  -->
+	<bean id="jedisCluster" class="com.jt.common.factory.JedisClusterFactory"/>
+	
+	
+	
+	
+	
+	
+	
+</beans>

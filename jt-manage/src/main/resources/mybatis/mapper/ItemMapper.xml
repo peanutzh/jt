@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jt.manage.mapper.ItemMapper">
+	
+	<select id="findItemByPage" resultType="Item">
+		select * from tb_item order by updated desc limit #{start},#{rows}
+	</select>
+	
+	<!--批量修改商品的状态信息
+		update tb_item set status = #{status},
+			updated = now()
+			where id in (100,200,300)
+	  -->
+	<update id="updateStatus">
+		update tb_item set status = #{status},updated = now()
+		where id in (
+			<foreach collection="ids" separator="," item="item">
+				#{item}
+			</foreach>
+		)
+	</update>
+</mapper>

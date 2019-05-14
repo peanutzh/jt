@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: springcloud-1-interface
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: LYJ
+Implementation-Vendor-Id: com.jt.springcloud
+Build-Jdk: 1.8.0_45
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/springcloud/springcloud-1-interface
+Created-By: Maven Integration for Eclipse
+
